@@ -1,0 +1,6 @@
+<h2 class="text-center text-danger">¿Eliminar proveedor "{{ proveedor.nombre }}"?</h2>
+<form method="post" class="text-center">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'lista_proveedores' %}" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,10 @@
+<div class="container mt-5">
+    <div class="border p-4 rounded shadow bg-white text-center">
+        <h2 class="mb-4 text-danger">¿Eliminar la orden de compra del proveedor "{{ orden.proveedor.nombre }}"?</h2>
+        <form method="post" class="d-inline-block">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger me-2">Sí, eliminar</button>
+            <a href="{% url 'lista_ordenes_compra' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

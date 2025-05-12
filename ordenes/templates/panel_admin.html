@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Incluir Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'ordenes/css/styles.css' %}">
+</head>
+<body>
+    <!-- Barra lateral con los iconos -->
+    <div class="barra-lateral">
+        <div class="boton-icono" onclick="mostrarFormulario('form_proveedor')">
+            <i class="fa-solid fa-user"></i> <!-- Icono de proveedor (camión) -->
+            <span class="texto">Crear Proveedor</span>
+        </div>
+        <div class="boton-icono" onclick="mostrarFormulario('form_producto')">
+            <i class="fa-solid fa-cart-plus"></i> <!-- Icono de producto (engranaje) -->
+            <span class="texto">Crear Producto</span>
+        </div>
+        <div class="boton-icono" onclick="mostrarFormulario('form_orden')">
+            <i class="fas fa-clipboard-list"></i> <!-- Icono de orden (lista) -->
+            <span class="texto">Crear Orden</span>
+        </div>
+        <div class="boton-icono" onclick="mostrarFormulario('form_detalle')">
+            <i class="fas fa-pen"></i> <!-- Icono de detalle (lapicero) -->
+            <span class="texto">Agregar Detalle</span>
+        </div>
+        <a href="/ordenes/ordenes_compra/" class="boton-icono">
+            <i class="fas fa-file-invoice"></i> <!-- Icono para órdenes de compra -->
+            <span class="texto">Ver Órdenes</span>
+        </a>
+        
+    </div>
+
+    <div class="background-logo">
+        <img src="{% static 'ordenes/images/Iconsifo.png' %}" alt="Logo" class="logo img-fluid">
+    </div>
+
+    <!-- Mensaje de éxito o error -->
+    {% if mensaje %}
+    <div class="alert alert-success text-center">{{ mensaje }}</div>
+    {% endif %}
+
+    <!-- Formularios -->
+    <div id="form_proveedor" class="formulario">
+        <h3 class="text-center">Crear Proveedor</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ proveedor_form.as_p }}
+            <button type="submit" name="guardar_proveedor" class="btn btn-primary w-100">Guardar</button>
+        </form>
+    </div>
+
+    <!-- Formulario de Producto -->
+    <div id="form_producto" class="formulario">
+        <h3>Crear Producto</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ producto_form.as_p }}
+            <button type="submit" name="guardar_producto" class="btn btn-primary w-100">Guardar</button>
+        </form>
+    </div>
+
+    <!-- Formulario de Orden de Compra -->
+    <div id="form_orden" class="formulario">
+        <h3>Crear Orden de Compra</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ orden_form.as_p }}
+            <button type="submit" name="guardar_orden" class="btn btn-primary w-100">Guardar</button>
+        </form>
+    </div>
+
+    <!-- Formulario de Detalle de Orden -->
+    <div id="form_detalle" class="formulario">
+        <h3>Agregar Detalle a Orden</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ detalle_form.as_p }}
+            <button type="submit" name="guardar_detalle" class="btn btn-primary w-100">Guardar</button>
+        </form>
+    </div>
+    
+    <!-- Resultados de Detalle de Orden -->
+    
+
+    <div id="overlay" class="overlay" onclick="cerrarFormularios()"></div> <!-- Overlay para cerrar formularios haciendo clic afuera -->
+
+    
+  
+
+
+
+
+    <!-- Scripts para mostrar y ocultar formularios -->
+    <script>
+        function mostrarFormulario(id) {
+            const formularios = document.querySelectorAll(".formulario");
+            const overlay = document.getElementById('overlay');
+
+            formularios.forEach(f => f.style.display = "none");
+            document.getElementById(id).style.display = "block";
+            overlay.style.display = "block";
+        }
+
+        function cerrarFormularios() {
+            document.querySelectorAll(".formulario").forEach(f => f.style.display = "none");
+            document.getElementById('overlay').style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

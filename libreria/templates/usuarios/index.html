@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block nombre %} Lista de Usuarios {% endblock %}
+
+{% block Contenido %}
+<br><br><br>
+    <div class="card shadow-lg">
+            <a href="{% url 'crear' %}" class="btn btn-success" style="background-color: #343a40; border-color: #343a40;">Agregar nuevo usuario</a>
+    </div>
+            
+    <h4 class="card-title text-Dark">Usuarios</h4>
+    <div class="table-container">
+        <table class="table table-transparent text-light">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Correo Electronico</th>
+                    <th>Telefono</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Tipo de Documento</th>
+                    <th>Numero de Documento</th>
+                    <th>Imagen</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{usuario.id}}</td>
+                    <td>{{usuario.nombre}}</td>
+                    <td>{{usuario.apellido}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.telefono}}</td>
+                    <td>{{usuario.fecha_nacimiento}}</td>
+                    <td>{{usuario.tipo_documento}}</td>
+                    <td>{{usuario.numero_documento}}</td>
+                    <td>
+                        <img src="{{usuario.imagen.url}}" width="50" height="50">
+                    </td>
+                    <td>{{usuario.descripcion}}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Acciones">
+                            <a class="btn btn-primary" href="{% url 'editar' usuario.id %}" role="button">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'eliminar' usuario.id %}" role="button">Borrar</a>
+                        </div>
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

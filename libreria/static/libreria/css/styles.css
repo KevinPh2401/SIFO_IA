@@ -1,0 +1,344 @@
+/* ========== NAVBAR SEMITRANSPARENTE ========== */
+.custom-navbar {
+    z-index: 1050; /* Bootstrap default para navbar fija */
+    padding: 15px;
+}
+
+.navbar-dark .nav-link {
+    color: rgb(5, 5, 5) !important;
+    font-weight: 500;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.navbar-dark .nav-link:hover {
+    color: #008cff !important; /* AZUL suave al pasar el mouse */
+}
+
+
+/* ========== NAVEGACIÓN SECUNDARIA (Botones dentro del contenido) ========== */
+.inicio-navegacion {
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.nav-btn {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: -30px;
+    font-size: 3.2rem;
+    padding: 40px 15px;
+    border: 2px solid white;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+
+/* ========== SECCIÓN INICIO (pantalla completa con overlay) ========== */
+.inicio-container {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 70px; /* dejar espacio para navbar */
+    z-index: 1;
+}
+.inicio-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 5%;
+
+}
+
+/*logo de sifo en la pantalla de inicio*/
+.logo-derecha {
+    position: absolute;
+    bottom: 0;
+    padding-top: 70%;
+    right: 30px; /* ajusta según necesidad */
+    width: 580px; /* ajusta el tamaño según el diseño */
+    opacity: 0;
+    animation: subirLogo 1.2s ease-out forwards;
+}
+
+@keyframes subirLogo {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+.btn-explorar {                 /* Botón de explorar */
+    padding: 12px 60px;
+    font-size: 1.1rem;
+}
+
+
+.inicio-content {
+    color: rgb(4, 103, 160);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 800px;
+    text-align: left;
+    margin-top: 70px;
+    animation: fadeInUp 1s ease-in-out;
+    
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0; /* Comienza completamente invisible */
+        transform: translateY(40px); /* Desplazado hacia abajo 40px */
+    }
+    100% {
+        opacity: 1; /* Totalmente visible */
+        transform: translateY(0); /* Posición original sin desplazamiento */
+    }
+}
+
+
+/* ========== ELEMENTOS VISUALES ========== */
+.inicio-icono {
+    width: 20px;
+    height: auto;
+    position: absolute;
+    top: 1px;
+    left: 10px;
+    width: 100px;
+    height: auto;
+    z-index: 10;
+}
+
+.inicio-titulo {
+    font-size: 3.5rem;
+    font-weight: normal;        /* Quita la negrita */
+    letter-spacing: 2px;        /* Espaciado entre letras */
+    font-family: 'Poppins', sans-serif; /* Cambia la fuente (puedes elegir otra) */
+}
+
+.inicio-subtitulo {
+    font-size: 1.3rem;
+    margin-top: 10px;
+}
+
+
+/* ========== CIERRE DE LA SECCIÓN INICIO (pantalla completa con overlay) ========== */
+
+
+
+/* ========== DISEÑO PARA LA PARTE DE USUARIOS, LAS TABLAS Y LOS DATOS REGISTRADOS ========== */
+/* ========== ESTILOS DE LA TABLA TRANSPARENTE Y CENTRADA ========== */
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    
+}
+
+.table {
+    width: 90%;
+    max-width: 1100px; /* Ajusta el ancho máximo de la tabla */
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin bordes */
+    box-shadow: none; /* Sin sombra */
+    font-size: 0.85rem; /* Tamaño de letra más pequeño */
+    text-align: left;
+}
+
+.table th, .table td {
+    padding: 8px; /* Espaciado de las celdas */
+    color: #0f0f0f; /* Texto negro */
+}
+
+.table th {
+    background-color: #86868600; /* Fondo oscuro para el encabezado */
+    font-weight: bold; /* Texto en negrita */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #575757; /* Color de fondo de las filas pares */
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #2c2c2c; /* Color de fondo de las filas impares */
+}
+
+
+/* ========== ESTILOS DE LOS BOTONES ALINEADOS ========== */
+.btn-group {
+    display: flex; /* Usa flexbox para alinear los botones en fila */
+    gap: 10px; /* Espacio entre los botones */
+}
+
+.btn-group .btn {
+    font-size: 0.85rem; /* Ajusta el tamaño del texto de los botones */
+    padding: 5px 10px; /* Espaciado dentro de los botones */
+}
+
+
+
+
+
+/* ======= LOGIN SECCIÓN CON CARRUSEL Y FORM ======= */
+
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+  animation: fadeInModal 0.4s ease;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  color: #333;
+  cursor: pointer;
+}
+
+
+/*animacion del logo del apartado login*/
+
+/* cierre de animacion del logo del apartado login */
+
+
+.login-form {
+    background-color: rgba(213, 219, 219, 0.493); /* semitransparente oscuro */
+    padding: 40px 30px;
+    height: 100%;
+    border-width: 2px;
+}
+
+.login-form .form-control {
+    background-color: rgba(32, 93, 163, 0.103); /* semitransparente espacios del login */
+    border: none;
+    border-width: 2px;
+
+}
+
+.login-form label {
+    font-weight: 500;
+}
+
+.login-form h2 {
+    font-weight: bold;
+}
+/* cierre de login-form */
+
+
+/* ========== DISEÑO PARA EL PANEL DE CREACION DE ORDENES DE COMPRA ========== */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contenedor-botones {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contenedor-botones button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    margin: 5px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.contenedor-botones button:hover {
+    background-color: #0056b3;
+}
+
+.formulario {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    padding: 30px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 10;
+    min-width: 350px;
+    max-width: 90%;
+}
+
+.formulario h3 {
+    margin-top: 0;
+}
+
+.formulario button {
+    margin-top: 10px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 5;
+}
+
+/* ========== CIERRE DEL DISEÑO PARA EL PANEL DE CREACION DE ORDENES DE COMPRA ========== */
+
+
+

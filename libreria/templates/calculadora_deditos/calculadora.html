@@ -1,0 +1,18 @@
+<h2>Calculadora de Deditos</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Calcular</button>
+</form>
+
+{% if resultado %}
+    <h3>Resultados:</h3>
+    <ul>
+        <li>Harina necesaria: {{ resultado.harina }} g</li>
+        <li>Queso necesario: {{ resultado.queso }} g</li>
+        <li>Peso total estimado: {{ resultado.peso_total }} g</li>
+        <li>Costo harina: ${{ resultado.costo_harina }}</li>
+        <li>Costo queso: ${{ resultado.costo_queso }}</li>
+        <li><strong>Costo total: ${{ resultado.costo_total }}</strong></li>
+    </ul>
+{% endif %}

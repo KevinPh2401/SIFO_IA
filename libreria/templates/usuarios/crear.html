@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block nombre %} Agregar nuevo Usuario {% endblock %}
+
+{% block Contenido %}
+<div class="card">
+    <div class="card-header">Asignar un nuevo usuario</div>
+    
+    <div class="card-body">
+        <h4 class="card-title">Datos del usuario</h4>
+        {% include 'usuarios/form.html' %}
+
+
+
+
+
+    </div>
+    <div class="card-footer text-muted"></div>
+</div>
+
+{% endblock %}
