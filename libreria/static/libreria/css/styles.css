@@ -241,8 +241,6 @@
 
 /*animacion del logo del apartado login*/
 
-/* cierre de animacion del logo del apartado login */
-
 
 .login-form {
     background-color: rgba(213, 219, 219, 0.493); /* semitransparente oscuro */
@@ -266,79 +264,5 @@
     font-weight: bold;
 }
 /* cierre de login-form */
-
-
-/* ========== DISEÑO PARA EL PANEL DE CREACION DE ORDENES DE COMPRA ========== */
-body {
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.contenedor-botones {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.05);
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.contenedor-botones button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    margin: 5px;
-    border-radius: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.contenedor-botones button:hover {
-    background-color: #0056b3;
-}
-
-.formulario {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #ffffff;
-    padding: 30px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    z-index: 10;
-    min-width: 350px;
-    max-width: 90%;
-}
-
-.formulario h3 {
-    margin-top: 0;
-}
-
-.formulario button {
-    margin-top: 10px;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    z-index: 5;
-}
-
-/* ========== CIERRE DEL DISEÑO PARA EL PANEL DE CREACION DE ORDENES DE COMPRA ========== */
-
 
 
