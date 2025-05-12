@@ -118,7 +118,7 @@ body {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #ccc;
+    background: #444343;
     cursor: pointer;
     transition: all 0.3s ease; /* Añadido */
 }
