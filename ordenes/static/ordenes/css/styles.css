@@ -1,9 +1,10 @@
-
 /* ========== DISEÑO DEL PANEL ADMINISTRATIVO DE MODULOS ========== */
 body {
     background-color: #0e7ad3;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative; /* Añadido */
+    z-index: 1; /* Añadido */
 }
 
 .dashboard-container {
@@ -12,6 +13,8 @@ body {
     border-radius: 16px;
     padding: 40px;
     margin: 40px;
+    position: relative; /* Añadido */
+    z-index: 1; /* Añadido */
 }
 
 .dashboard-button {
@@ -43,3 +46,95 @@ body {
 }
 /* cierre del fondo y animaciones */
 /* ========== CIERRE DEL DISEÑO DEL PANEL ADMINISTRATIVO DE MODULOS ===== */
+
+
+/* ========== DISEÑO DEL FORMULARIO DE REGISTRO DE ORDENES DE COMPRA ========== */
+.formulario-carrusel {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Aumentado de 100 a 1000 */
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    animation: fadeIn 0.3s ease-out; /* Añadido */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -45%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.overlay-carrusel {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Un nivel menos que el carrusel */
+    backdrop-filter: blur(3px); /* Añadido para efecto de desenfoque */
+}
+
+.carrusel-container {
+    position: relative;
+    min-height: 400px;
+}
+
+.carrusel-slide {
+    display: none;
+    animation: slideFade 0.3s ease-out; /* Añadido */
+}
+
+.carrusel-slide.active {
+    display: block;
+}
+
+@keyframes slideFade {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.carrusel-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.carrusel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #444343;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Añadido */
+}
+
+.indicator.active {
+    background: #4f46e5;
+    transform: scale(1.2); /* Añadido */
+}
+
+/* Estilos para los botones dentro del carrusel */
+.carrusel-slide button, .carrusel-slide a {
+    transition: all 0.3s ease;
+}
+
+.carrusel-slide button:hover, .carrusel-slide a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* ========== CIERRE DEL DISEÑO DEL FORMULARIO DE REGISTRO DE ORDENES DE COMPRA ====== */

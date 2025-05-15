@@ -2,12 +2,9 @@ from django.shortcuts import render
 from django.shortcuts import redirect, get_object_or_404
 from django.forms import modelformset_factory
 from django.contrib import messages
-from .models import OrdenCompra, DetalleOrden, Producto
-from .forms import OrdenCompraForm, DetalleOrdenForm
-from .models import Proveedor
-from .forms import ProveedorForm
-from .models import Producto
-from .forms import ProductoForm
+from .models import OrdenCompra, DetalleOrden, Producto, Proveedor
+from .forms import OrdenCompraForm, DetalleOrdenForm, ProveedorForm, ProductoForm
+
 
 def lista_ordenes(request):
     ordenes = OrdenCompra.objects.all()  # obtiene todas las órdenes
@@ -253,6 +250,4 @@ def vista_panel(request):
 # CIERRE DE LA VISTA PARA LA PARTE DE CREACION DE ORDEN COMPLETA
 
 
-#PROTECCION DE LA VISTA DEL PANEL ADMINISTRATIVO
 
-#CIERRE DE LA PROTECCION DE LA VISTA DEL PANEL ADMINISTRATIVO

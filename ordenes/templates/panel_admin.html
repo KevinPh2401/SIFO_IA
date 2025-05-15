@@ -23,7 +23,7 @@
                 <i data-feather="book" class="w-10 h-10" style="color: #2563eb;"></i>
                 <span class="text-sm">PLAN DE CUENTAS</span>
             </button>
-            <button class="dashboard-button rounded-lg p-4 flex flex-col items-center justify-center space-y-2 text-center" onclick="window.location.href='/ordenes/ordenes_compra/'">
+            <button class="dashboard-button rounded-lg p-4 flex flex-col items-center justify-center space-y-2 text-center" onclick="mostrarCarrusel()">
                 <i data-feather="shopping-cart" class="w-10 h-10" style="color: #16a34a;"></i>
                 <span class="text-sm">ORDENES DE COMPRA</span>
             </button>
@@ -81,13 +81,171 @@
             </button>
         </div>
     </div>
-    
-    <!-- Script para inicializar Feather Icons -->
+
+    <!-- Carrusel de formularios -->
+    <div id="formulario-carrusel" class="formulario-carrusel hidden">
+        <div class="carrusel-container">
+            <!-- Slide 1: Menú de opciones -->
+            <div id="slide-menu" class="carrusel-slide active">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Órdenes de Compra</h3>
+                    <button onclick="cerrarCarrusel()" class="text-gray-500 hover:text-gray-700">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <button onclick="mostrarSlide('slide-proveedor')" class="p-4 flex flex-col items-center justify-center space-y-2 text-center border rounded-lg hover:bg-gray-50">
+                        <i data-feather="user-plus" class="w-10 h-10" style="color: #16a34a;"></i>
+                        <span>Crear Proveedor</span>
+                    </button>
+                    
+                    <button onclick="mostrarSlide('slide-producto')" class="p-4 flex flex-col items-center justify-center space-y-2 text-center border rounded-lg hover:bg-gray-50">
+                        <i data-feather="shopping-cart" class="w-10 h-10" style="color:rgb(11, 94, 172);"></i>
+                        <span>Crear Producto</span>
+                    </button>
+                    
+                    <button onclick="mostrarSlide('slide-orden')" class="p-4 flex flex-col items-center justify-center space-y-2 text-center border rounded-lg hover:bg-gray-50">
+                        <i data-feather="plus-circle" class="w-10 h-10" style="color:rgb(112, 4, 54);"></i>
+                        <span>Crear Orden</span>
+                    </button>
+                    
+                    <button onclick="mostrarSlide('slide-detalle')" class="p-4 flex flex-col items-center justify-center space-y-2 text-center border rounded-lg hover:bg-gray-50">
+                        <i data-feather="shopping-cart" class="w-10 h-10" style="color:rgb(219, 6, 6);"></i>
+                        <span>Agregar Detalle</span>
+                    </button>
+                    
+                    <a href="/ordenes/ordenes_compra/" class="p-4 flex flex-col items-center justify-center space-y-2 text-center border rounded-lg hover:bg-gray-50 col-span-2">
+                        <i data-feather="file-text" class="w-10 h-10" style="color:rgb(2, 2, 2);"></i>
+                        <span>Ver Órdenes</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Slide 2: Formulario Proveedor -->
+            <div id="slide-proveedor" class="carrusel-slide">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Crear Proveedor</h3>
+                    <button onclick="mostrarSlide('slide-menu')" class="text-gray-500 hover:text-gray-700">
+                        <i data-feather="arrow-left"></i>
+                    </button>
+                </div>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    {{ proveedor_form.as_p }}
+                    <div class="mt-6 flex justify-between">
+                        <button type="button" onclick="mostrarSlide('slide-menu')" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+                            Regresar
+                        </button>
+                        <button type="submit" name="guardar_proveedor" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Slide 3: Formulario Producto -->
+            <div id="slide-producto" class="carrusel-slide">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Crear Producto</h3>
+                    <button onclick="mostrarSlide('slide-menu')" class="text-gray-500 hover:text-gray-700">
+                        <i data-feather="arrow-left"></i>
+                    </button>
+                </div>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    {{ producto_form.as_p }}
+                    <div class="mt-6 flex justify-between">
+                        <button type="button" onclick="mostrarSlide('slide-menu')" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+                            Regresar
+                        </button>
+                        <button type="submit" name="guardar_producto" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Slide 4: Formulario Orden -->
+            <div id="slide-orden" class="carrusel-slide">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Crear Orden de Compra</h3>
+                    <button onclick="mostrarSlide('slide-menu')" class="text-gray-500 hover:text-gray-700">
+                        <i data-feather="arrow-left"></i>
+                    </button>
+                </div>
+                
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ orden_form.as_p }}
+                    <div class="mt-6 flex justify-between">
+                        <button type="button" onclick="mostrarSlide('slide-menu')" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+                            Regresar
+                        </button>
+                        <button type="submit" name="guardar_orden" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Slide 5: Formulario Detalle -->
+            <div id="slide-detalle" class="carrusel-slide">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Agregar Detalle a Orden</h3>
+                    <button onclick="mostrarSlide('slide-menu')" class="text-gray-500 hover:text-gray-700">
+                        <i data-feather="arrow-left"></i>
+                    </button>
+                </div>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    {{ detalle_form.as_p }}
+                    <div class="mt-6 flex justify-between">
+                        <button type="button" onclick="mostrarSlide('slide-menu')" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+                            Regresar
+                        </button>
+                        <button type="submit" name="guardar_detalle" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40" onclick="cerrarCarrusel()"></div>
+    <!-- Overlay específico para el carrusel -->
+    <div id="overlay-carrusel" class="overlay-carrusel" onclick="cerrarCarrusel()"></div>
+    <!-- Scripts unificados y optimizados -->
+    <!-- Scripts -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inicializar los iconos de Feather
-            feather.replace();
-        });
+        // Inicializar Feather Icons
+        feather.replace();
+
+        // Mostrar/ocultar carrusel
+        function mostrarCarrusel() {
+            document.getElementById('formulario-carrusel').style.display = 'block';
+            document.getElementById('overlay-carrusel').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Deshabilita el scroll
+        }
+
+        function cerrarCarrusel() {
+            document.getElementById('formulario-carrusel').style.display = 'none';
+            document.getElementById('overlay-carrusel').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Habilita el scroll
+        }
+
+        // Navegación entre slides
+        function mostrarSlide(slideId) {
+            document.querySelectorAll('.carrusel-slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(slideId).classList.add('active');
+        }
     </script>
 </body>
 </html>
