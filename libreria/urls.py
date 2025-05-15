@@ -4,9 +4,14 @@ from . import views
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
 from libreria.views import deditos_view
-
+from django.urls import path
+from .views import login_view
+from . import views
 urlpatterns = [
-    path('', views.inicio, name='inicio'),
+    
+    path('', login_view, name='inicio'),
+    path('panel/', views.panel, name='panel'),
+    path('registro/', views.registro, name='registro'),
     path('nosotros', views.nosotros, name='nosotros'),
     path('usuarios', views.usuarios, name='usuarios'),
     path('usuarios/crear', views.crear, name='crear'),

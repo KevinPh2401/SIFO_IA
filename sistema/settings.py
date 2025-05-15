@@ -71,6 +71,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sistema.wsgi.application'
 
+AUTH_USER_MODEL = 'libreria.Usuario'
 
 # Database
 # https://docs.djangoprojectp.com/en/5.2/ref/settings/#databases
@@ -80,13 +81,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'libreria',
         'USER': 'root',
-        'PASSWORD':'',
+        'PASSWORD':'1234',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '3307',
     }
 }
 
-#LOGIN AUTENTICATION
+
 
 
 #CIERRE DE LOGIN AUTENTICATION

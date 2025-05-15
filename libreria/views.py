@@ -3,11 +3,64 @@ from django.http import HttpResponse
 from .models import Usuario
 from .forms import UsuarioForm
 from .forms import DeditosForm
-
-
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from .models import Empresa, Usuario
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from .forms import UsuarioRegistroForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
 # Create your views here.
-def inicio(request):
-    return render(request, 'paginas/inicio.html')
+def login_view(request):
+        if request.method == 'POST':
+            usuario = request.POST.get('usuario')
+            clave = request.POST.get('clave')
+            codigo = request.POST.get('codigo')
+
+        print(f"Intentando login: usuario={usuario}, clave={clave}, codigo={codigo}")
+
+        if not (usuario and clave and codigo):
+            messages.error(request, "Todos los campos son obligatorios.")
+            return render(request, 'paginas/inicio.html')
+
+        try:
+            empresa = Empresa.objects.get(codigo_empresa=codigo)
+            user = Usuario.objects.get(email=usuario, empresa=empresa)
+
+            print(f"Usuario encontrado: {user}")
+
+            # ✅ Comparar contraseña encriptada correctamente
+            if check_password(clave, user.clave):
+                request.session['usuario_id'] = user.id
+                print("Login exitoso. Redirigiendo a panel.")
+                return redirect('/panel')
+            else:
+                print("Contraseña incorrecta.")
+                messages.error(request, "Contraseña incorrecta.")
+        except (Empresa.DoesNotExist, Usuario.DoesNotExist):
+            print("Empresa o usuario no encontrados.")
+            messages.error(request, "Credenciales inválidas.")
+        return render(request, 'paginas/inicio.html')
+
+    
+
+@login_required
+def panel(request):
+    return render(request, 'panel_admin.html')
+
+def registro(request):
+    if request.method == 'POST':
+        form = UsuarioRegistroForm(request.POST)
+        if form.is_valid():
+            usuario = form.save()
+            login(request, usuario)
+            return redirect('inicio')  # Redirige donde desees
+    else:
+        form = UsuarioRegistroForm()
+    return render(request, 'registro.html', {'form': form})
+
+
 
 def nosotros(request):
     return render(request, 'paginas/nosotros.html')
@@ -87,3 +140,32 @@ def deditos_view(request):
 
 
 #cierre del autenticador login
+
+
+def login_view(request):
+  if request.method == 'POST':
+        usuario = request.POST.get('usuario')
+        clave = request.POST.get('clave')
+        codigo = request.POST.get('codigo')
+
+        if not (usuario and clave and codigo):
+            messages.error(request, "Todos los campos son obligatorios.")
+            return render(request, 'paginas/inicio.html')
+
+        try:
+            empresa = Empresa.objects.get(codigo_empresa=codigo)
+            user = Usuario.objects.get(email=usuario, empresa=empresa)
+
+            if user.check_password(clave):
+                # Guardar en sesión
+                request.session['usuario_id'] = user.id
+                return redirect('panel')  # Asegúrate que exista esta URL
+            else:
+                messages.error(request, "Contraseña incorrecta.")
+        except (Empresa.DoesNotExist, Usuario.DoesNotExist):
+            messages.error(request, "Credenciales inválidas.")
+    
+    
+  return render(request, 'paginas/inicio.html')
+
+    
