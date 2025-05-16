@@ -266,3 +266,92 @@
 /* cierre de login-form */
 
 
+/* ========= ESTILO PARA EL LOGIN REGISTRO ========== */
+/* Fondo con imagen y efecto blur */
+/* Fondo y overlay oscuro */
+.background-container {
+  background-image: url("../img/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  background-color: rgba(255, 255, 255, 0); /* oscurece el fondo */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Contenedor elegante del formulario */
+.form-container {
+  background: rgba(255, 255, 255, 0.397);
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #2b6bf388;
+  margin-top: 7vh;
+}
+
+
+/* Encabezado */
+h2 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #0085ddc7;
+}
+
+/* Inputs */
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(69, 120, 161, 0.158);
+  color: #333;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  background-color: #10bd1917;
+  box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
+
+/* Etiquetas */
+label {
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 5px;
+  display: block;
+}
+
+
+
+/* Texto inferior */
+p, a {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+  }
+}   
+
+/* ========= CIERRE  PARA EL LOGIN REGISTRO ========== */
