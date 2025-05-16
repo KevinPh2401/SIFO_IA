@@ -34,7 +34,7 @@ def login_view(request):
             if check_password(clave, user.clave):
                 request.session['usuario_id'] = user.id
                 print("Login exitoso. Redirigiendo a panel.")
-                return redirect('/panel')
+                return redirect('ordenes:panel')
             else:
                 print("Contraseña incorrecta.")
                 messages.error(request, "Contraseña incorrecta.")
@@ -162,7 +162,7 @@ def login_view(request):
             if user.check_password(clave):
                 # Guardar en sesión
                 request.session['usuario_id'] = user.id
-                return redirect('panel')  # Asegúrate que exista esta URL
+                return redirect('ordenes/panel')  # Asegúrate que exista esta URL
             else:
                 messages.error(request, "Contraseña incorrecta.")
         except (Empresa.DoesNotExist, Usuario.DoesNotExist):
