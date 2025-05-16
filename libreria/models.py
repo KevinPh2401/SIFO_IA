@@ -33,7 +33,12 @@ class UsuarioManager(BaseUserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(email, nombre, apellido, password, **extra_fields)
-
+    
+TIPO_DOCUMENTO_CHOICES = [
+    ('CC', 'CC'),
+    ('Pasaporte', 'Pasaporte'),
+    ('Otro', 'Otro'),
+]
 
 # ---------- MODELO USUARIO PERSONALIZADO ----------
 class Usuario(AbstractBaseUser, PermissionsMixin):
@@ -44,7 +49,13 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     
     telefono = models.CharField(max_length=15, verbose_name="Teléfono", null=True, blank=True)
     fecha_nacimiento = models.DateField(verbose_name="Fecha de Nacimiento", null=True, blank=True)
-    tipo_documento = models.CharField(max_length=50, verbose_name="Tipo de Documento", null=True, blank=True)
+    tipo_documento = models.CharField(
+        max_length=20,
+        choices=TIPO_DOCUMENTO_CHOICES,
+        verbose_name="Tipo de Documento",
+        null=True,
+        blank=True
+    )
     numero_documento = models.CharField(max_length=50, verbose_name="Número de Documento", null=True, blank=True)
     imagen = models.ImageField(upload_to='imagenes/', verbose_name="Imagen", blank=True)
     descripcion = models.TextField(verbose_name="descripcion", null=True)

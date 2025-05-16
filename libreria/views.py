@@ -50,15 +50,18 @@ def panel(request):
     return render(request, 'panel_admin.html')
 
 def registro(request):
-    if request.method == 'POST':
-        form = UsuarioRegistroForm(request.POST)
+   if request.method == 'POST':
+        form = UsuarioRegistroForm(request.POST, request.FILES)
         if form.is_valid():
-            usuario = form.save()
-            login(request, usuario)
-            return redirect('inicio')  # Redirige donde desees
-    else:
+            usuario = form.save(commit=False)
+            password = form.cleaned_data['password']
+            usuario.set_password(password)
+            usuario.save()
+            login(request, usuario)  # Puedes eliminar esto si no deseas login automático
+            return redirect('inicio')  # Cambia 'inicio' por la ruta deseada
+   else:
         form = UsuarioRegistroForm()
-    return render(request, 'registro.html', {'form': form})
+   return render(request, 'registro.html', {'form': form})
 
 
 
