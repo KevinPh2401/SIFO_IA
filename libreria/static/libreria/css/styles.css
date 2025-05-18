@@ -1,7 +1,33 @@
+.fondo-pagina {
+    background-size: 70% auto; /* Reduced size to make it more compact */
+    background-position: left 10%; /* Moved to the left and 60% from top */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin-left: -10px; /* Additional left shift */
+}
+
+
+
+
 /* ========== NAVBAR SEMITRANSPARENTE ========== */
 .custom-navbar {
     z-index: 1050; /* Bootstrap default para navbar fija */
     padding: 15px;
+    background-color: rgba(0, 0, 0, 0); /* Fondo semitransparente */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Línea inferior sutil */
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .navbar-dark .nav-link {
@@ -14,33 +40,6 @@
 .navbar-dark .nav-link:hover {
     color: #008cff !important; /* AZUL suave al pasar el mouse */
 }
-
-
-/* ========== NAVEGACIÓN SECUNDARIA (Botones dentro del contenido) ========== */
-.inicio-navegacion {
-    display: flex;
-    justify-content: left;
-    gap: 10px;
-    margin-bottom: 50px;
-}
-
-.nav-btn {
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    margin-top: -30px;
-    font-size: 3.2rem;
-    padding: 40px 15px;
-    border: 2px solid white;
-    border-radius: 8px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.nav-btn:hover {
-    background-color: white;
-    color: black;
-}
-
 
 /* ========== SECCIÓN INICIO (pantalla completa con overlay) ========== */
 .inicio-container {
@@ -67,71 +66,112 @@
     position: absolute;
     bottom: 0;
     padding-top: 70%;
-    right: 30px; /* ajusta según necesidad */
-    width: 580px; /* ajusta el tamaño según el diseño */
+    right: 50px;
+    width: 500px;
     opacity: 0;
-    animation: subirLogo 1.2s ease-out forwards;
+    animation: deslizarLogo 0.8s ease-out forwards;
 }
 
-@keyframes subirLogo {
+@keyframes deslizarLogo {
     0% {
-        transform: translateY(100px);
+        transform: translateX(100px); /* Changed to negative value */
         opacity: 0;
     }
     100% {
-        transform: translateY(0);
+        transform: translateX(0);
         opacity: 1;
     }
 }
 
 
-.btn-explorar {                 /* Botón de explorar */
+/* ========== BOTÓN EXPLORAR ========== */
+.btn-explorar {
     padding: 12px 60px;
     font-size: 1.1rem;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.26);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0; /* Inicialmente invisible */
+    transform: translateX(-50px); /* Inicialmente fuera de pantalla */
+    animation: slideIn 1s ease forwards; /* Activa la animación */
+}
+
+/* Efecto al pasar el mouse */
+.btn-explorar:hover {
+    background: linear-gradient(45deg, #ffffff, #c7c7c7); /* Gradient from dark to light blue */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05); /* Ligero aumento */
+    color:#000000; /* Cambia el color del texto al pasar el mouse */
 }
 
 
+/* Animación de entrada desde la izquierda */
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0); /* Regresa a su posición original */
+    }
+}
+
+/* ========== CIERRE DE BOTÓN EXPLORAR ========== */
+
+/* ========== CONTENIDO DE LA SECCIÓN INICIO  letras========== */
 .inicio-content {
-    color: rgb(4, 103, 160);
     padding: 30px;
     border-radius: 15px;
     max-width: 800px;
     text-align: left;
-    margin-top: 70px;
-    animation: fadeInUp 1s ease-in-out;
-    
+    margin-top: 150px;
+    animation: slideInRight 1s ease-out;
 }
 
-/* Animación de entrada */
-@keyframes fadeInUp {
+/* Simple slide animation from right */
+@keyframes slideInRight {
     0% {
-        opacity: 0; /* Comienza completamente invisible */
-        transform: translateY(40px); /* Desplazado hacia abajo 40px */
+        opacity: 0;
+        transform: translateX(-100px);
     }
     100% {
-        opacity: 1; /* Totalmente visible */
-        transform: translateY(0); /* Posición original sin desplazamiento */
+        opacity: 1;
+        transform: translateX(0);
     }
 }
+
+/* ========== CIERRE DE CONTENIDO DE LA SECCIÓN INICIO ========== */
 
 
 /* ========== ELEMENTOS VISUALES ========== */
 .inicio-icono {
-    width: 20px;
     height: auto;
     position: absolute;
-    top: 1px;
-    left: 10px;
+    top: -50px;  /* Start higher up for animation */
+    left: 130px;
     width: 100px;
     height: auto;
     z-index: 10;
+    animation: dropDown 0.5s ease-out forwards;
+}
+
+@keyframes dropDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+        top: -10px;  /* Final position */
+    }
 }
 
 .inicio-titulo {
-    font-size: 3.5rem;
-    font-weight: normal;        /* Quita la negrita */
+    font-size: 4.5rem;
     letter-spacing: 2px;        /* Espaciado entre letras */
-    font-family: 'Poppins', sans-serif; /* Cambia la fuente (puedes elegir otra) */
+    font-family: 'Agency FB', monospace; /* Agency FB font */
 }
 
 .inicio-subtitulo {
@@ -269,40 +309,62 @@
 /* ========= ESTILO PARA EL LOGIN REGISTRO ========== */
 /* Fondo con imagen y efecto blur */
 /* Fondo y overlay oscuro */
+body {
+    background-size: 70% auto; /* Reduced size to make it more compact */
+    background-position: left 10%; /* Moved to the left and 60% from top */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin-left: -10px; /* Additional left shift */
+}
+
 .background-container {
-  background-image: url("../img/fondo.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .overlay {
-  background-color: rgba(255, 255, 255, 0); /* oscurece el fondo */
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
+    background-color: rgba(255, 255, 255, 0); /* oscurece el fondo */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
 
 /* Contenedor elegante del formulario */
 .form-container {
-  background: rgba(255, 255, 255, 0.397);
-  border-radius: 20px;
-  padding: 30px;
-  width: 100%;
-  max-width: 800px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #2b6bf388;
-  margin-top: 7vh;
+    background: rgba(255, 255, 255, 0.781);
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #2b6bf388;
+    margin-top: 7vh;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 
@@ -345,7 +407,7 @@ label {
 
 /* Texto inferior */
 p, a {
-  color: #ffffff;
+  color: #0f0d0d;
 }
 
 @media (max-width: 768px) {
