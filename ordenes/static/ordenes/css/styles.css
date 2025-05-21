@@ -1,6 +1,6 @@
 /* ========== DISEÑO DEL PANEL ADMINISTRATIVO DE MODULOS ========== */
 body {
-    background-color: #0e7ad3;
+    background: linear-gradient(135deg, #0077ff 0%, #00a1ff 33%, #0055b3 66%, #082b68 100%);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative; /* Añadido */
@@ -8,7 +8,7 @@ body {
 }
 
 .dashboard-container {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.226);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 40px;
@@ -44,31 +44,48 @@ body {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     font-weight: 600;
 }
-/* cierre del fondo y animaciones */
+
 /* ========== CIERRE DEL DISEÑO DEL PANEL ADMINISTRATIVO DE MODULOS ===== */
 
 
 /* ========== DISEÑO DEL FORMULARIO DE REGISTRO DE ORDENES DE COMPRA ========== */
+
+/* ----------------recuadro de ordenes de compra ------------------------------ */
 .formulario-carrusel {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000; /* Aumentado de 100 a 1000 */
-    width: 90%;
-    max-width: 600px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    padding: 2rem;
-    animation: fadeIn 0.3s ease-out; /* Añadido */
+    display: none;                                    /* Oculta el elemento inicialmente */
+    position: fixed;                                  /* Fija el elemento en la pantalla */
+    top: 50%;                                        /* Posiciona el elemento al 50% desde arriba */
+    left: 50%;                                       /* Posiciona el elemento al 50% desde la izquierda */
+    transform: translate(-50%, -50%);                 /* Centra el elemento perfectamente */
+    z-index: 1000;                                   /* Controla la capa de apilamiento, 1000 para estar por encima de otros elementos */
+    width: 90%;                                      /* Establece el ancho al 90% del contenedor padre */
+    max-width: 1000px;                                /* Limita el ancho máximo a 800px */
+    background: rgba(255, 255, 255, 0.849);                               /* Establece el fondo blanco */
+    border-radius: 10px;                             /* Añade esquinas redondeadas */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);     /* Añade sombra para efecto de elevación */
+    padding: 2rem;                                   /* Añade espacio interno de 2rem */
+    animation: fadeIn 0.3s ease-out;                 /* Aplica animación de aparición gradual */
+    max-height: 90vh; /* Limita el alto máximo al 90% del viewport */
+    overflow-y: auto; /* Permite hacer scroll vertical si el contenido es muy largo */
+    overscroll-behavior: contain; /* Previene scroll de fondo cuando se llega al final */
+    scrollbar-width: thin; /* Hace la barra de desplazamiento más delgada (Firefox) */
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
+
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translate(-50%, -45%); }
     to { opacity: 1; transform: translate(-50%, -50%); }
 }
+
+.formulario-carrusel::-webkit-scrollbar {
+    width: 6px;
+}
+.formulario-carrusel::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+/*--------- cierre del recuadro de ordenes de compra -----------------------------------*/
 
 .overlay-carrusel {
     display: none;
